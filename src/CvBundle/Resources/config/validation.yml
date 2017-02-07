@@ -1,0 +1,12 @@
+CvBundle\Entity\Message:
+  properties:
+    email:
+      - Email: { message: "L'email n'est pas valide" }
+    nom:
+      - NotBlank: { message: "Le nom n'est pas valide" }
+    prenom:
+      - NotBlank: { message: "Le prénom n'est pas valide" }
+    subject:
+      - NotBlank: { message: "Le sujet n'est pas valide" }
+    content:
+      - NotBlank: { message: "Le contenu n'est pas valide" }

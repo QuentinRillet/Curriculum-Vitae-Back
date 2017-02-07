@@ -1,0 +1,39 @@
+{% extends '@Backend/base.html.twig' %}
+
+{% block container %}
+    <div class="row">
+        <div class="col s12">
+            <h1>{{ 'Listes des messages'|trans }}</h1>
+
+            <div class="row">
+                {% for message in messages %}
+                {% set delete_form = delete_forms[loop.index0] %}
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content white-text blue-grey darken-1">
+                            <span class="card-title">{{ message.nom }} {{ message.prenom }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{ 'Sujet'|trans }}: {{ message.subject }}</p>
+                            <p class="center-align">-</p>
+                            <p><i>{{ message.content }}</i></p>
+                            <p class="right-align">
+                                {% if message.createdAt %}{{ 'Posté le'|trans }}: <i>{{ message.createdAt|date("d-m-Y  H:m") }}</i>{% endif %}
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            {{ 'Répondre'|trans }}: <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+                        </div>
+                        <div class="card-content">
+                            {{ form_start(delete_form) }}
+                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right">delete</i>{{ 'Effacer'|trans }}
+                            </button>
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

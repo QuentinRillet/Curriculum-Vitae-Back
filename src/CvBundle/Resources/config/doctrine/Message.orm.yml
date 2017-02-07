@@ -1,0 +1,28 @@
+CvBundle\Entity\Message:
+    type: entity
+    table: null
+    repositoryClass: CvBundle\Repository\MessageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        content:
+            type: text
+        subject:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+    lifecycleCallbacks: {  }
