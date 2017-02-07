@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CvBundle:Default:index.html.twig');
+        return $this->render('CvBundle:Front:index.html.twig');
     }
 }

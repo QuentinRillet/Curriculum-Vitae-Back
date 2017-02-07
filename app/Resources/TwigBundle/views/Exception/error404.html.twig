@@ -1,0 +1,10 @@
+{% extends '@Backend/base.html.twig' %}
+
+{% block logo %}Erreur{% endblock %}
+{% block container %}
+    <div class="col s12">
+        <h2>La page demandée n'existe pas !</h2>
+
+        <p>Merci de bien vouloir revenir sur la <a href="{{ path('cv_homepage') }}">page principale</a> </p>
+    </div>
+{% endblock %}

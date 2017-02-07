@@ -14,3 +14,5 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/static
+/src/CvBundle/Resources/views/Front/*
