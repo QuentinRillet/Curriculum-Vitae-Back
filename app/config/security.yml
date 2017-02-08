@@ -18,6 +18,9 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
+                always_use_default_target_path: true
+                default_target_path: /admin
+                use-referer: true
             logout:       true
             anonymous:    true
 
