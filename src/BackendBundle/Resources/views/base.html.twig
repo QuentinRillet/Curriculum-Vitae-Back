@@ -18,23 +18,30 @@
         </a>
     </li>
 </ul>
-
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">{% block logo %}Administration des messages{% endblock %}</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <a class="dropdown-button" href="#!" data-activates="drop-log">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <i class="material-icons right">arrow_drop_down</i></a>
-                {% else %}
-                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container">
-    {% block container %}{% endblock %}
+<header class="page-topbar">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">{% block logo %}Administration des messages{% endblock %}</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <a class="dropdown-button" href="#!" data-activates="drop-log">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <i class="material-icons right">arrow_drop_down</i></a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="wrapper">
+    <section style="padding-top: 100px">
+        <div class="container">
+            {% block container %}{% endblock %}
+        </div>
+    </section>
 </div>
+
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 <script>
