@@ -1,0 +1,16 @@
+BackendBundle\Entity\Document:
+    type: entity
+    table: null
+    repositoryClass: BackendBundle\Repository\DocumentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: {  }

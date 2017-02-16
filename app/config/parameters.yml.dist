@@ -22,3 +22,5 @@ parameters:
 
     cors_allow_origin: http://localhost
     user_mail: 'joe.doe@gmail.com'
+
+    documents_directory: '%kernel.root_dir%/../web/uploads/documents'

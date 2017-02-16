@@ -2,15 +2,46 @@
 
 namespace BackendBundle\Controller;
 
+use BackendBundle\Entity\Document;
+use BackendBundle\Form\DocumentType;
 use CvBundle\Entity\Message;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $document = new Document();
+        $form = $this->createForm(DocumentType::class, $document);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var Symfony\Component\HttpFoundation\File\UploadedFile $file
+             */
+            $file = $document->getNom();
+
+            //$fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = 'CV-Resume-Quentin-Rillet.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('documents_directory'),
+                $fileName
+            );
+
+            $document->setNom($fileName);
+
+            $this->addFlash(
+                'notice',
+                'Votre CV est en ligne'
+            );
+
+            return $this->redirect($this->generateUrl('backend_homepage'));
+        }
+
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('CvBundle:Message');
         $messages = $repo->findBy(array(),array('createdAt' => 'DESC'));
@@ -24,7 +55,8 @@ class DefaultController extends Controller
 
         return $this->render('BackendBundle:Default:index.html.twig', array(
             'messages' => $messages,
-            'delete_forms' => $delete_forms
+            'delete_forms' => $delete_forms,
+            'form' => $form->createView(),
         ));
     }
 

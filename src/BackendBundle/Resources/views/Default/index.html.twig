@@ -8,7 +8,7 @@
             <div class="row">
                 {% for message in messages %}
                 {% set delete_form = delete_forms[loop.index0] %}
-                <div class="col m4">
+                <div class="col l4 m3 s12">
                     <div class="card">
                         <div class="card-content white-text blue-grey darken-1">
                             <span class="card-title">{{ message.nom }} {{ message.prenom }}</span>
@@ -32,8 +32,35 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block sidebar%}
+    <div class="row">
+        <h4>{{ 'Mettre à jour le CV'|trans }}</h4>
+        {{ form_start(form) }}
+
+        {{ form_errors(form.nom) }}
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                {{ form_widget(form.nom) }}
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        {{ form_widget(form) }}
+
+        <button type="submit" class="waves-effect waves-light btn">{{ 'Envoyer'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+        <a class="waves-effect waves-light btn" href="{{ asset('uploads/documents/CV-Resume-Quentin-Rillet.pdf') }}" target="_blank">{{ 'Télécharger'|trans }}</a>
+    </div>
+
 {% endblock %}

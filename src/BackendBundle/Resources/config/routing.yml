@@ -1,6 +1,7 @@
 backend_homepage:
     path:     /
     defaults: { _controller: BackendBundle:Default:index }
+    methods: ['GET', 'POST']
 
 message_delete:
     path:     /message/{id}/delete
