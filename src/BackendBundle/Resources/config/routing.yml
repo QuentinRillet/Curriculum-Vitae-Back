@@ -7,3 +7,13 @@ message_delete:
     path:     /message/{id}/delete
     defaults: { _controller: "BackendBundle:Default:delete" }
     methods:  DELETE
+
+backend_cv:
+    path:     /cv
+    defaults: { _controller: BackendBundle:Document:cv }
+    methods: ['GET', 'POST']
+
+backend_recommendation:
+    path:     /recommendation
+    defaults: { _controller: BackendBundle:Document:recommendation }
+    methods: ['GET', 'POST']
